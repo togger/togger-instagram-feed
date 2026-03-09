@@ -275,6 +275,37 @@
         </table>
     </div>
 
+    <!-- ACF Options Card -->
+    <div class="tif-card">
+        <h2>⚙️ ACF Konfiguration</h2>
+        <?php if (function_exists('acf_add_local_field_group')): ?>
+            <?php $instagram_acf = get_field('instagram', 'option'); ?>
+            <table class="tif-status-table">
+                <tr>
+                    <td class="tif-status-label">Instagram (ACF)</td>
+                    <td class="tif-status-value">
+                        <?php if (!empty($instagram_acf)): ?>
+                            <span class="tif-status-ok">✅ <?php echo esc_html($instagram_acf); ?></span>
+                        <?php else: ?>
+                            <span class="tif-status-warning">⚪ Nicht gesetzt</span>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            </table>
+            <p style="margin-top: 12px;">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=tif-acf-options')); ?>" class="button button-secondary">
+                    ✏️ Konfiguration bearbeiten
+                </a>
+            </p>
+        <?php else: ?>
+            <div class="tif-status-error">
+                <span class="dashicons dashicons-warning"></span>
+                <strong>Advanced Custom Fields (ACF) ist nicht aktiviert.</strong><br>
+                <small>Bitte installiere und aktiviere das ACF-Plugin, um diese Funktion zu nutzen.</small>
+            </div>
+        <?php endif; ?>
+    </div>
+
     <!-- Shortcode Usage -->
     <?php if ($data['is_connected']): ?>
     <div class="tif-card">

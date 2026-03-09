@@ -29,6 +29,8 @@ class ToggersInstagramFeed
         add_action('admin_init', [$this, 'handleTokenRefresh']);
         add_action('admin_enqueue_scripts', [$this, 'enqueueAdminStyles']);
         add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendStyles']);
+        add_action('acf/init', [$this, 'registerAcfOptionsPage']);
+        add_action('acf/init', [$this, 'registerAcfFieldGroup']);
         
         // Shortcode registration
         add_shortcode('togger_instagram_feed', [$this, 'renderShortcode']);
@@ -84,6 +86,53 @@ class ToggersInstagramFeed
             [],
             '1.0.0'
         );
+    }
+
+    public function registerAcfOptionsPage(): void
+    {
+        if (!function_exists('acf_add_options_sub_page')) {
+            return;
+        }
+
+        acf_add_options_sub_page([
+            'page_title'  => 'Instagram Konfiguration',
+            'menu_title'  => 'Konfiguration',
+            'parent_slug' => 'tif-settings',
+            'capability'  => 'manage_options',
+            'menu_slug'   => 'tif-acf-options',
+        ]);
+    }
+
+    public function registerAcfFieldGroup(): void
+    {
+        if (!function_exists('acf_add_local_field_group')) {
+            return;
+        }
+
+        acf_add_local_field_group([
+            'key'    => 'group_tif_instagram',
+            'title'  => 'Instagram Feed',
+            'fields' => [
+                [
+                    'key'          => 'field_tif_instagram',
+                    'label'        => 'Instagram',
+                    'name'         => 'instagram',
+                    'type'         => 'text',
+                    'instructions' => 'Instagram-Benutzername (z.B. @kinderuni_at)',
+                    'required'     => 0,
+                    'placeholder'  => '@username',
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param'    => 'options_page',
+                        'operator' => '==',
+                        'value'    => 'tif-acf-options',
+                    ],
+                ],
+            ],
+        ]);
     }
 
     public function addAdminMenu()

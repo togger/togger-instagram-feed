@@ -282,10 +282,30 @@
             <?php $instagram_acf = get_field('instagram', 'option'); ?>
             <table class="tif-status-table">
                 <tr>
-                    <td class="tif-status-label">Instagram (ACF)</td>
+                    <td class="tif-status-label">Überschrift</td>
                     <td class="tif-status-value">
-                        <?php if (!empty($instagram_acf)): ?>
-                            <span class="tif-status-ok">✅ <?php echo esc_html($instagram_acf); ?></span>
+                        <?php if (!empty($instagram_acf['headline'])): ?>
+                            <span class="tif-status-ok">✅ <?php echo esc_html($instagram_acf['headline']); ?></span>
+                        <?php else: ?>
+                            <span class="tif-status-warning">⚪ Nicht gesetzt</span>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tif-status-label">Benutzername</td>
+                    <td class="tif-status-value">
+                        <?php if (!empty($instagram_acf['username'])): ?>
+                            <span class="tif-status-ok">✅ <?php echo esc_html($instagram_acf['username']); ?></span>
+                        <?php else: ?>
+                            <span class="tif-status-warning">⚪ Nicht gesetzt</span>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tif-status-label">Profil-Link</td>
+                    <td class="tif-status-value">
+                        <?php if (!empty($instagram_acf['profile-link'])): ?>
+                            <span class="tif-status-ok">✅ <?php echo esc_html($instagram_acf['profile-link']); ?></span>
                         <?php else: ?>
                             <span class="tif-status-warning">⚪ Nicht gesetzt</span>
                         <?php endif; ?>

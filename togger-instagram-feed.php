@@ -527,8 +527,13 @@ class ToggersInstagramFeed
             return '<div class="tif-error">' . esc_html($posts['error']) . '</div>';
         }
 
+        $template = locate_template('togger-instagram-feed/feed-template.php');
+        if (empty($template)) {
+            $template = plugin_dir_path(__FILE__) . 'views/feed-template.php';
+        }
+
         ob_start();
-        include plugin_dir_path(__FILE__) . 'views/feed-template.php';
+        include $template;
         return ob_get_clean();
     }
 }

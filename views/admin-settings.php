@@ -241,8 +241,10 @@
                             <?php if ($data['token_expires'] < time() + (7 * DAY_IN_SECONDS)): ?>
                                 <br><span style="color: #d63638;">⚠️ Token läuft bald ab! Bitte erneuern.</span>
                             <?php endif; ?>
-                        <?php endif; ?>
-                    <?php else: ?>
+                        <?php endif; ?>                        <?php $next_refresh = wp_next_scheduled('tif_auto_refresh_token'); ?>
+                        <?php if ($next_refresh): ?>
+                            <br><small>🔄 Nächste automatische Erneuerung: <?php echo date('d.m.Y H:i', $next_refresh); ?></small>
+                        <?php endif; ?>                    <?php else: ?>
                         <span class="tif-status-error">❌ Nicht vorhanden</span>
                     <?php endif; ?>
                 </td>

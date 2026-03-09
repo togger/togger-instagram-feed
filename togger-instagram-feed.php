@@ -31,6 +31,8 @@ class ToggersInstagramFeed
         add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendStyles']);
         add_action('acf/init', [$this, 'registerAcfOptionsPage']);
         add_action('acf/init', [$this, 'registerAcfFieldGroup']);
+        add_action('tif_auto_refresh_token', [$this, 'maybeAutoRefreshToken']);
+        add_action('init', [$this, 'maybeScheduleCron']);
         
         // Shortcode registration
         add_shortcode('togger_instagram_feed', [$this, 'renderShortcode']);
@@ -54,6 +56,10 @@ class ToggersInstagramFeed
         add_option('tif_instagram_account_id', '');
         add_option('tif_facebook_page_id', '');
         add_option('tif_instagram_username', '');
+
+        if (!wp_next_scheduled('tif_auto_refresh_token')) {
+            wp_schedule_event(time(), 'daily', 'tif_auto_refresh_token');
+        }
     }
 
     public function onDeactivate()
@@ -67,6 +73,11 @@ class ToggersInstagramFeed
         delete_option('tif_facebook_page_id');
         delete_option('tif_instagram_username');
         delete_transient(self::CACHE_KEY);
+
+        $timestamp = wp_next_scheduled('tif_auto_refresh_token');
+        if ($timestamp) {
+            wp_unschedule_event($timestamp, 'tif_auto_refresh_token');
+        }
     }
 
     public function enqueueAdminStyles($hook)
@@ -485,6 +496,28 @@ class ToggersInstagramFeed
         }
 
         $this->exchangeForLongLivedToken($currentToken);
+    }
+
+    public function maybeAutoRefreshToken(): void
+    {
+        $expires    = (int) get_option('tif_token_expires', 0);
+        $token      = get_option('tif_long_lived_token');
+
+        if (empty($token) || $expires === 0) {
+            return;
+        }
+
+        // Refresh when fewer than 7 days remain
+        if ($expires - time() < 7 * DAY_IN_SECONDS) {
+            $this->exchangeForLongLivedToken($token);
+        }
+    }
+
+    public function maybeScheduleCron(): void
+    {
+        if (!wp_next_scheduled('tif_auto_refresh_token')) {
+            wp_schedule_event(time(), 'daily', 'tif_auto_refresh_token');
+        }
     }
 
     public function getInstagramPosts(int $limit = 12): array

@@ -31,20 +31,29 @@ Ein modernes WordPress Plugin zur Anzeige von Instagram Posts über die Facebook
 
 ## Setup-Anleitung
 
-### 1. Facebook Developer App erstellen
+### 1. Meta Developer App erstellen
 
-**Option A - Direkter Zugriff:**
-1. Gehe zu [developers.facebook.com](https://developers.facebook.com)
-2. Klicke auf "Create App" → Wähle "Business" als App-Typ
-3. Gib einen App-Namen ein (z.B. "Literaturhaus Instagram Feed")
-4. Wähle "Yourself or your own business"
+> **Hinweis (Stand 2026):** Meta hat die Developer-Plattform umstrukturiert. Das Portal heißt jetzt **Meta for Developers**. Der Login erfolgt über den normalen Facebook/Meta-Account – es gibt keinen separaten Developer-Login.
 
-**Option B - Via Business Manager (empfohlen bei Zugriffsproblemen):**
-1. Gehe zu [business.facebook.com](https://business.facebook.com)
-2. Klicke auf **Business Settings** (Zahnrad-Symbol)
-3. Unter **Accounts** → **Apps**
-4. Klicke auf **Add** → **Create New App ID**
-5. Folge dem gleichen Prozess wie bei Option A
+**Vorbereitung – Login sicherstellen:**
+1. Logge dich zuerst bei [facebook.com](https://www.facebook.com) in deinem Browser ein
+2. Öffne dann in demselben Browser [developers.facebook.com](https://developers.facebook.com) – du solltest automatisch eingeloggt sein
+3. Falls nicht: Klicke oben rechts auf **"Log In"** (nutzt deinen Facebook-Account)
+
+**App erstellen:**
+1. Klicke auf **"My Apps"** → **"Create App"**
+2. Wähle als Use Case **"Other"** (oder "Business") → **"Next"**
+3. Wähle als App-Typ **"Business"** → **"Next"**
+4. Gib einen App-Namen ein (z.B. "Literaturhaus Instagram Feed")
+5. Optional: Business Portfolio verknüpfen
+6. Klicke **"Create App"**
+
+**Alternative – Via Meta Business Suite:**
+1. Gehe zu [business.facebook.com](https://business.facebook.com) und logge dich ein
+2. Klicke links unten auf das **Zahnrad-Symbol** (Einstellungen) → oder direkt zu [business.facebook.com/settings](https://business.facebook.com/settings)
+3. Im linken Menü unter **"Konten"** → **"Apps"**
+4. Klicke auf **"Hinzufügen"** → **"Neue App-ID erstellen"**
+5. Folge dem gleichen Prozess wie oben
 
 ### 2. Instagram Basic Display API einrichten
 
@@ -122,25 +131,44 @@ Graph API v21.0:
 
 ## Troubleshooting
 
+### Kein Login / kein Zugang bei developers.facebook.com
+
+**Ursache:** Es gibt keinen eigenen Developer-Login. Man muss sich mit dem normalen Facebook-Account anmelden.
+
+**Lösung Schritt für Schritt:**
+1. Zuerst bei [facebook.com](https://www.facebook.com) einloggen
+2. Dann [developers.facebook.com](https://developers.facebook.com) öffnen – Login passiert automatisch
+3. Falls Fehlermeldung "You don't have access": E-Mail und Telefonnummer im Facebook-Account verifizieren (Einstellungen → Sicherheit)
+4. Cache und Cookies löschen (Strg+Shift+Entf) und nochmal versuchen
+5. VPN/Proxy deaktivieren falls aktiv
+
+### "Business Settings" nicht auffindbar bei business.facebook.com
+
+**Ursache:** Meta hat die Oberfläche umbenannt und umstrukturiert.
+
+**Lösung:**
+- Die "Business Settings" befinden sich jetzt unter dem **Zahnrad-Symbol** links unten in der Meta Business Suite
+- Direktlink: [business.facebook.com/settings](https://business.facebook.com/settings)
+- Falls die Seite auf Meta Business Suite umleitet: Links im Menü nach **"Einstellungen"** oder dem Zahnrad-Symbol suchen
+- Unter **"Konten" → "Apps"** können Apps verwaltet werden
+
 ### "You don't have access" bei developers.facebook.com
 
 **Mögliche Ursachen:**
+- Noch nicht bei facebook.com eingeloggt (Entwickler-Portal nutzt denselben Login)
 - Neuer Facebook-Account (muss aktiv und verifiziert sein)
 - Fehlende E-Mail/Telefon-Verifizierung
-- Business Manager Zugriff erforderlich
 - Browser-Cache/Cookie-Probleme
 - VPN oder Proxy aktiv
-- Account-Einschränkungen
 
 **Lösungen:**
-1. **Verifizierung prüfen**: Facebook → Einstellungen → Sicherheit → E-Mail und Telefon verifizieren
-2. **Browser zurücksetzen**: Cache und Cookies löschen (Strg+Shift+Entf), Incognito-Modus testen
-3. **Alternative Route**: Nutze business.facebook.com → Business Settings → Accounts → Apps statt developers.facebook.com
+1. **Zuerst bei facebook.com einloggen**, dann developers.facebook.com aufrufen
+2. **Verifizierung prüfen**: Facebook → Einstellungen → Sicherheit → E-Mail und Telefon verifizieren
+3. **Browser zurücksetzen**: Cache und Cookies löschen (Strg+Shift+Entf), Incognito-Modus testen
 4. **VPN deaktivieren**: Falls aktiv, VPN/Proxy ausschalten
 5. **Anderen Browser testen**: Chrome, Firefox oder Edge probieren
-6. **Support kontaktieren**: facebook.com/support für Account-Einschränkungen prüfen
 
-**Empfohlener Workaround**: Erstelle die App direkt über business.facebook.com anstatt über developers.facebook.com
+**Empfohlener Workaround**: Direktlink [business.facebook.com/settings](https://business.facebook.com/settings) → Zahnrad/Einstellungen → Konten → Apps
 
 ### "Kein Instagram Business Account gefunden"
 

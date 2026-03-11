@@ -14,57 +14,56 @@
             <summary style="cursor: pointer; font-size: 1.3em; font-weight: 600; padding: 10px 0;">📖 Schritt-für-Schritt Anleitung</summary>
         
         <div class="tif-tutorial-steps">
+
             <div class="tif-step">
                 <div class="tif-step-number">1</div>
                 <div class="tif-step-content">
-                    <h3>Facebook Developer Account erstellen</h3>
-                    <p><strong>Option A - Direkter Zugriff:</strong><br>
-                    Gehe zu <a href="https://developers.facebook.com" target="_blank">developers.facebook.com</a> und melde dich mit deinem Facebook-Account an.</p>
-                    
-                    <p><strong>Option B - Über Business Manager (wenn kein Zugriff):</strong><br>
-                    Falls du die Meldung "You don't have access" erhältst, nutze stattdessen:<br>
-                    1. Gehe zu <a href="https://business.facebook.com" target="_blank">business.facebook.com</a><br>
-                    2. Klicke auf <strong>Business Settings</strong> (Zahnrad-Symbol)<br>
-                    3. Unter <strong>Accounts</strong> → <strong>Apps</strong><br>
-                    4. Klicke auf <strong>Add</strong> → <strong>Create New App ID</strong></p>
-                    
-                    <details style="margin-top: 10px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">
-                        <summary style="cursor: pointer; font-weight: 600;">❓ Warum habe ich keinen Zugriff auf developers.facebook.com?</summary>
-                        <ul style="margin-top: 10px;">
-                            <li><strong>Neuer Account:</strong> Sehr neue Facebook-Accounts haben manchmal eingeschränkten Zugriff</li>
-                            <li><strong>Fehlende Verifizierung:</strong> Stelle sicher, dass E-Mail und Telefonnummer verifiziert sind</li>
-                            <li><strong>Business Manager erforderlich:</strong> Manche Organisationen erfordern Zugriff über Business Manager</li>
-                            <li><strong>Browser-Problem:</strong> Versuche Incognito-Modus oder lösche Cache/Cookies</li>
-                            <li><strong>VPN:</strong> Deaktiviere VPN falls aktiv</li>
-                        </ul>
-                    </details>
+                    <h3>Instagram Business Account vorbereiten</h3>
+                    <p><strong>Voraussetzung:</strong> Dein Instagram Account muss ein <strong>Business</strong> oder <strong>Creator Account</strong> sein und mit einer <strong>Facebook-Seite verknüpft</strong> sein. Ohne diese Verbindung kann das Plugin keinen Zugriff erhalten.</p>
+                    <ol>
+                        <li>Öffne Instagram (App) → Einstellungen &amp; Aktivitäten → Account → <strong>Zu Professional Account wechseln</strong></li>
+                        <li>Wähle „Business" als Account-Typ</li>
+                        <li>Verknüpfe den Account mit deiner Facebook-Seite: Instagram → Einstellungen → Account → <strong>Mit Facebook verknüpfen</strong></li>
+                    </ol>
+                    <p style="margin-top: 8px;"><strong>Wichtig:</strong> Du musst <strong>Admin der Facebook-Seite</strong> sein, die mit Instagram verknüpft ist.</p>
                 </div>
             </div>
 
             <div class="tif-step">
                 <div class="tif-step-number">2</div>
                 <div class="tif-step-content">
-                    <h3>Neue App erstellen</h3>
+                    <h3>Meta Developer App erstellen</h3>
+                    <p>Zuerst bei <a href="https://www.facebook.com" target="_blank">facebook.com</a> einloggen, dann <a href="https://developers.facebook.com" target="_blank">developers.facebook.com</a> öffnen.</p>
                     <ol>
-                        <li>Klicke auf "Create App" / "App erstellen"</li>
-                        <li>Wähle "Business" als App-Typ</li>
-                        <li>Gib einen App-Namen ein (z.B. "Literaturhaus Instagram Feed")</li>
-                        <li>Wähle "Yourself or your own business" als Zweck</li>
-                        <li>Klicke auf "Create App"</li>
+                        <li>Klicke auf <strong>„My Apps"</strong> → <strong>„Create App"</strong></li>
+                        <li>Use Case: <strong>„Other"</strong> → <strong>„Next"</strong></li>
+                        <li>App-Typ: <strong>„Business"</strong> → <strong>„Next"</strong></li>
+                        <li>App-Namen eingeben (z.B. „Literaturhaus Instagram Feed") → <strong>„Create App"</strong></li>
                     </ol>
+                    <details style="margin-top: 10px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">
+                        <summary style="cursor: pointer; font-weight: 600;">❓ „Dieses Feature ist noch nicht für dich verfügbar."?</summary>
+                        <p style="margin-top: 8px;">Diese Meldung bedeutet, dass dein Facebook-Account noch nicht als Entwickler-Account freigeschaltet ist. Der häufigste Grund ist eine fehlende Telefon-Verifizierung:</p>
+                        <ol style="margin-top: 6px;">
+                            <li>Gehe zu <a href="https://accountscenter.facebook.com/personal_info/contact_points" target="_blank">accountscenter.facebook.com</a> (Meta Account Center)</li>
+                            <li>Klicke auf <strong>„Kontaktinfos"</strong> → <strong>„Telefonnummer"</strong> → Nummer hinzufügen und verifizieren</li>
+                            <li><a href="https://developers.facebook.com" target="_blank">developers.facebook.com</a> neu laden – „Create App" sollte jetzt erscheinen</li>
+                        </ol>
+                        <p style="margin-top: 6px;">Falls das nicht hilft: Prüfe ob dein Account Einschränkungen hat unter <a href="https://www.facebook.com/help/contact/260749603972907" target="_blank">facebook.com/support</a>.</p>
+                    </details>
                 </div>
             </div>
 
             <div class="tif-step">
                 <div class="tif-step-number">3</div>
                 <div class="tif-step-content">
-                    <h3>Instagram Basic Display API hinzufügen</h3>
+                    <h3>„Facebook Login for Business" zur App hinzufügen</h3>
+                    <p><strong>Hinweis:</strong> Die frühere <em>Instagram Basic Display API</em> wurde von Meta <strong>im Dezember 2024 abgeschafft</strong>. Dieses Plugin verwendet stattdessen die <strong>Graph API über Facebook Login</strong>.</p>
                     <ol>
-                        <li>Im App Dashboard, suche nach "Instagram Basic Display"</li>
-                        <li>Klicke auf "Set Up" / "Einrichten"</li>
-                        <li>Scrolle nach unten zu "User Token Generator"</li>
-                        <li>Klicke auf "Add or Remove Instagram Testers"</li>
-                        <li>Füge deinen Instagram Business Account hinzu</li>
+                        <li>Im App Dashboard: links unter <strong>„Add Product"</strong> (oder „Use Cases") → suche <strong>„Facebook Login for Business"</strong> → Klicke <strong>„Set Up"</strong></li>
+                        <li>Wähle <strong>„Web"</strong> als Platform</li>
+                        <li>Kopiere die <strong>Redirect URI</strong> aus dem Feld unten auf dieser Seite</li>
+                        <li>Füge sie unter <strong>Facebook Login → Settings → Valid OAuth Redirect URIs</strong> ein</li>
+                        <li>Klicke <strong>„Save Changes"</strong></li>
                     </ol>
                 </div>
             </div>
@@ -72,13 +71,12 @@
             <div class="tif-step">
                 <div class="tif-step-number">4</div>
                 <div class="tif-step-content">
-                    <h3>Facebook Login hinzufügen</h3>
+                    <h3>App ID und App Secret kopieren</h3>
                     <ol>
-                        <li>Gehe zurück zum App Dashboard</li>
-                        <li>Suche "Facebook Login" und klicke auf "Set Up"</li>
-                        <li>Wähle "Web" als Platform</li>
-                        <li>Kopiere die Redirect URI unten und füge sie unter "Valid OAuth Redirect URIs" ein</li>
-                        <li>Speichern nicht vergessen!</li>
+                        <li>Im App Dashboard: links auf <strong>„App settings"</strong> → <strong>„Basic"</strong></li>
+                        <li>Kopiere <strong>„App ID"</strong> und klicke bei „App Secret" auf <strong>„Show"</strong></li>
+                        <li>Füge beide Werte in die Felder unten auf dieser Seite ein</li>
+                        <li>Klicke <strong>„Einstellungen speichern"</strong></li>
                     </ol>
                 </div>
             </div>
@@ -86,40 +84,17 @@
             <div class="tif-step">
                 <div class="tif-step-number">5</div>
                 <div class="tif-step-content">
-                    <h3>App ID und Secret kopieren</h3>
-                    <ol>
-                        <li>Gehe zu "Settings" → "Basic" in deiner App</li>
-                        <li>Kopiere die "App ID" und "App Secret"</li>
-                        <li>Füge beide in die Felder unten ein</li>
-                        <li>Klicke auf "Einstellungen speichern"</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="tif-step">
-                <div class="tif-step-number">6</div>
-                <div class="tif-step-content">
-                    <h3>Instagram Business Account vorbereiten</h3>
-                    <p><strong>Wichtig:</strong> Dein Instagram Account muss ein <strong>Business Account</strong> sein und mit einer Facebook-Seite verbunden sein!</p>
-                    <ol>
-                        <li>Öffne Instagram → Einstellungen → Account</li>
-                        <li>Wechsle zu "Professional Account" (falls noch nicht geschehen)</li>
-                        <li>Verbinde mit deiner Facebook-Seite unter "Page"</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="tif-step">
-                <div class="tif-step-number">7</div>
-                <div class="tif-step-content">
                     <h3>Mit Facebook verbinden</h3>
-                    <p>Klicke auf den Button "Mit Facebook verbinden" unten, um die Autorisierung abzuschließen.</p>
+                    <p>Klicke auf den Button <strong>„Mit Facebook verbinden"</strong> weiter unten.</p>
+                    <p>Du wirst zu Facebook weitergeleitet und musst den Zugriff auf deine <strong>Facebook-Seite</strong> und den damit verknüpften <strong>Instagram Business Account</strong> erlauben.</p>
+                    <p>Das Plugin holt danach automatisch die nötigen IDs und speichert den Access Token (gültig für 60 Tage).</p>
                 </div>
             </div>
+
         </div>
 
         <div class="tif-tutorial-note">
-            <strong>💡 Hinweis:</strong> Der Access Token ist 60 Tage gültig. Du musst ihn danach erneuern.
+            <strong>💡 Hinweis:</strong> Der Access Token ist 60 Tage gültig und wird automatisch täglich erneuert, solange er noch aktiv ist.
         </div>
         </details>
     </div>
@@ -361,18 +336,26 @@
         <h2>🔧 Problemlösung</h2>
         
         <details>
-            <summary><strong>Fehler: "You don't have access" bei developers.facebook.com</strong></summary>
+            <summary><strong>Fehler: „Dieses Feature ist noch nicht für dich verfügbar."</strong></summary>
+            <p>Der häufigste Grund ist eine fehlende Telefon-Verifizierung im Facebook-Account:</p>
+            <ol>
+                <li>Gehe zu <a href="https://accountscenter.facebook.com/personal_info/contact_points" target="_blank">accountscenter.facebook.com</a> (Meta Account Center)</li>
+                <li>Klicke auf <strong>„Kontaktinfos"</strong> → <strong>„Telefonnummer"</strong> → Nummer hinzufügen und verifizieren</li>
+                <li><a href="https://developers.facebook.com" target="_blank">developers.facebook.com</a> neu laden</li>
+            </ol>
+            <p>Hilft das nicht, unter <a href="https://www.facebook.com/help/contact/260749603972907" target="_blank">facebook.com/support</a> prüfen, ob der Account Einschränkungen hat.</p>
+        </details>
+
+        <details>
+            <summary><strong>Fehler: „You don't have access" / kein Login bei developers.facebook.com</strong></summary>
             <p><strong>Mögliche Ursachen und Lösungen:</strong></p>
             <ol>
-                <li><strong>Neuer Facebook-Account:</strong> Dein Account muss eine gewisse Zeit aktiv sein und verifiziert sein (E-Mail + Telefon)</li>
-                <li><strong>Fehlende Verifizierung:</strong> Gehe zu Facebook → Einstellungen → Sicherheit und verifiziere E-Mail und Telefonnummer</li>
-                <li><strong>Business Manager erforderlich:</strong> Nutze stattdessen business.facebook.com → Business Settings → Accounts → Apps</li>
-                <li><strong>Browser-Cache:</strong> Lösche Browser-Cache und Cookies (Strg+Shift+Entf) oder nutze Incognito-Modus</li>
+                <li><strong>Nicht eingeloggt:</strong> Zuerst bei <a href="https://www.facebook.com" target="_blank">facebook.com</a> einloggen, dann developers.facebook.com aufrufen</li>
+                <li><strong>Fehlende Verifizierung:</strong> Facebook → Einstellungen → Sicherheit → E-Mail und Telefonnummer verifizieren</li>
+                <li><strong>Browser-Cache:</strong> Cache und Cookies löschen (Strg+Shift+Entf) oder Incognito-Modus nutzen</li>
                 <li><strong>VPN/Proxy:</strong> Deaktiviere VPN oder Proxy und versuche es erneut</li>
-                <li><strong>Konto-Einschränkungen:</strong> Prüfe auf facebook.com/support ob dein Account eingeschränkt ist</li>
                 <li><strong>Anderer Browser:</strong> Versuche es mit Chrome, Firefox oder Edge</li>
             </ol>
-            <p><strong>Alternative:</strong> Erstelle die App über business.facebook.com statt über developers.facebook.com</p>
         </details>
 
         <details>
@@ -422,10 +405,10 @@
     <div class="tif-card tif-footer-links">
         <h3>📚 Nützliche Links</h3>
         <ul>
-            <li><a href="https://developers.facebook.com/apps/" target="_blank">Facebook Developer Dashboard</a></li>
-            <li><a href="https://developers.facebook.com/docs/instagram-basic-display-api" target="_blank">Instagram Basic Display API Dokumentation</a></li>
+            <li><a href="https://developers.facebook.com/apps/" target="_blank">Meta Developer Dashboard (Apps)</a></li>
+            <li><a href="https://developers.facebook.com/docs/instagram-platform" target="_blank">Instagram Platform Dokumentation</a></li>
             <li><a href="https://developers.facebook.com/docs/facebook-login/" target="_blank">Facebook Login Dokumentation</a></li>
-            <li><a href="https://business.facebook.com/" target="_blank">Facebook Business Manager</a></li>
+            <li><a href="https://business.facebook.com/" target="_blank">Meta Business Suite</a></li>
         </ul>
     </div>
 </div>
